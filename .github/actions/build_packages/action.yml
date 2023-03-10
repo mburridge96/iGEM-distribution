@@ -4,9 +4,6 @@ description: "Build and validate final packages"
 runs:
   using: composite
   steps:
-    - name: Set up Git repository
-      uses: actions/checkout@v2
-
     - name: Collect any new commits
       shell: bash
       run: |

@@ -16,26 +16,49 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
+
   retrieve_parts:
     name: Retrieve missing parts
     needs: directories_and_excel
     runs-on: ubuntu-latest
     steps:
+      - name: Check out this repository for building
+        uses: actions/checkout@v3
       - name: retrieve_parts
         uses: ./.github/actions/retrieve_parts
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
 
   build_packages:
     name: Build and validate final packages
     needs: retrieve_parts
     runs-on: ubuntu-latest
     steps:
+      - name: Check out this repository for building
+        uses: actions/checkout@v3
       - name: build_packages
         uses: ./.github/actions/build_packages
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+      
 
   build_distribution:
     name: Build and export distribution
     needs: build_packages
     runs-on: ubuntu-latest
     steps:
+      - name: Check out this repository for building
+        uses: actions/checkout@v3
       - name: build_distribution
         uses: ./.github/actions/build_distribution
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}

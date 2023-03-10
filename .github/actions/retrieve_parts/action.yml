@@ -5,9 +5,6 @@ description: "Imports parts and devices and converts any legacy parts to SBOL3"
 runs:
   using: composite
   steps:
-    - name: Set up Git repository
-      uses: actions/checkout@v2
-
     - name: Collect any new commits
       shell: bash
       run: |
@@ -44,9 +41,3 @@ runs:
         git config --local user.name "GitHub Action"
         git add */*.gb */*.fasta */*.nt
         git diff-index --quiet HEAD . || git commit -m "Automatically import referenced parts"
-
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
