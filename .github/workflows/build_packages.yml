@@ -10,7 +10,7 @@ jobs:
       - name: Check out this repository for building
         uses: actions/checkout@v3
       - name: directories_and_excel
-        uses: /.github/actions/directories_and_excel
+        uses: ./.github/actions/directories_and_excel
 
   retrieve_parts:
     name: Retrieve missing parts
@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: retrieve_parts
-        uses: /.github/actions/retrieve_parts
+        uses: ./.github/actions/retrieve_parts
 
   build_packages:
     name: Build and validate final packages
@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build_packages
-        uses: /.github/actions/build_packages
+        uses: ./.github/actions/build_packages
 
   build_distribution:
     name: Build and export distribution
@@ -34,4 +34,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build_distribution
-        uses: /.github/actions/build_distribution
+        uses: ./.github/actions/build_distribution
