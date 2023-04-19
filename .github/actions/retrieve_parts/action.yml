@@ -11,12 +11,12 @@ runs:
         git pull  # get any pushes made since the trigger began; without this job-to-job connections may fail
 
     - name: Set up Python 3.9
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v4
       with:
         python-version: 3.9
 
     - name: Set up Node.js 14
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
         node-version: '14'
 
